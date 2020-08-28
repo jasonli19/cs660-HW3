@@ -6,11 +6,11 @@
 
 ## Spam Classifier using PySpark
 ### Usage
-Run 
+Open 
 ```
 Spam Classifier PySpark.ipynb 
 ```
-in Jupyter Notebook or Google Colab to see the results.
+in Jupyter Notebook or Google Colab and run all the cells to see the results.
 
 ### Results
 Laplace smoothing Value | Accuracy | Precision | Recall | Run Time |
@@ -30,9 +30,28 @@ the run time did not change a lot.
 
 ## Spam Classifier using MapReduce
 ### Preprocessing
-
+Run the following code to separate the spam data into two files named train.txt and test.txt under Data folder.
+```
+python3 preprocess.py
+```
 ### Training
-
+Run the following code to get the training data which we can use in the classify step.
+```
+python3 train_mrjob.py ./data/train.txt > training.json
+```
 ### Classify
-
+Run the following code to get the predicted label for the test data.
+```
+python3 classify_mrjob.py data/test.txt --model=training.json > result.txt
+```
 ### Evaluation
+Run the following code to see the results.
+```
+python3 evaluation.py
+```
+### Results
+Accuracy| 0.97 |
+--------| ---- |
+Precision  | 0.83 |
+Recall | 0.96 |
+F-measure | 0.89 |
