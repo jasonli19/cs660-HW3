@@ -8,7 +8,7 @@
 ### Usage
 Open 
 ```
-Spam Classifier PySpark.ipynb 
+PySpark.ipynb 
 ```
 in Jupyter Notebook or Google Colab and run all the cells to see the results.
 
@@ -35,14 +35,18 @@ Run the following code to separate the spam data into two files named train.txt 
 python3 preprocess.py
 ```
 ### Training
-Run the following code to get the training data which we can use in the classify step.
+Run the following code to get the training data which we can use in the classify step. The script will save the probability from training data in model.json file
 ```
-python3 train_mrjob.py ./data/train.txt > training.json
+!python train_mrjob.py ./data/train.txt > model.json
 ```
+The script will save the probability from training data in model.json file
+
 ### Classify
 Run the following code to get the predicted label for the test data.
+
+Note: By changing the parameter **--laplace** to see how the laplace smoothing value affect the accuracy.
 ```
-python3 classify_mrjob.py data/test.txt --model=training.json > result.txt
+!python classify_mrjob.py data/test.txt --model=model.json --laplace=0.1 > prediction.txt
 ```
 ### Evaluation
 Run the following code to see the results.
