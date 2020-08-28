@@ -37,7 +37,7 @@ python3 preprocess.py
 ### Training
 Run the following code to get the training data which we can use in the classify step. The script will save the probability from training data in model.json file
 ```
-!python train_mrjob.py ./data/train.txt > model.json
+!python3 train_mrjob.py ./data/train.txt > model.json
 ```
 The script will save the probability from training data in model.json file
 
@@ -46,7 +46,7 @@ Run the following code to get the predicted label for the test data.
 
 Note: By changing the parameter **--laplace** to see how the laplace smoothing value affect the accuracy.
 ```
-!python classify_mrjob.py data/test.txt --model=model.json --laplace=0.1 > prediction.txt
+!python3 classify_mrjob.py data/test.txt --model=model.json --laplace=0.1 > prediction.txt
 ```
 ### Evaluation
 Run the following code to see the results.
@@ -63,3 +63,5 @@ Laplace smoothing Value | Accuracy | Precision | Recall |F-measure|
 1   | 0.9668 | 0.8068 | 0.9793|0.8847 
 
 ## Conclusion
+We can get the best scores for accuracy and F-measure when laplace smoothing value equals to 0.1 using the MapReduce. However, we can get best
+scores when laplace smoothing value equals to 2 using PySpark. And we also found the range for laplace smoothing value is greater than 0 and less than or equal to 1 using MapReduce. But this codition does not apply to PySpark. Overall, we can get best scores by using MapReduce.
